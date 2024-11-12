@@ -11,4 +11,8 @@ public abstract class User {
     public void seDeconnecter(){
         this.connected = false;
     }
+
+    public String getUserName(){
+        return this.user_name;
+    }
 }

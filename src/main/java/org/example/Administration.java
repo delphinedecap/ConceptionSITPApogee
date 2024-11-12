@@ -5,27 +5,25 @@ import java.util.Objects;
 
 public class Administration extends User{
 
-    static ArrayList<User> users = new ArrayList<User>();
+    Apogee apogee;
 
-    public Administration(String user_name){
+    public Administration(String user_name, Apogee a){
         this.user_name = user_name;
+        this.apogee = a;
     }
 
     public void créerCompte(String user_name, String typeCompte){
-        if (Objects.equals(typeCompte, "Etudiant")){
-
-        } else if (Objects.equals(typeCompte, "Professeur")) {
-
-        } else if (Objects.equals(typeCompte, "Administration")) {
-
-        } else {
-            //retourner une erreur
+        if (this.apogee.getUser(user_name)==null){
+            //retourne erreur, compte deja existant
         }
-    }
-
-    private boolean verifierExistanceCompte(String user_name){
-        for (User u : this.users) {
-            if (u.getUserName == user_name)
+        if (Objects.equals(typeCompte, "Etudiant")){
+            this.apogee.addUser(new Etudiant(user_name));
+        } else if (Objects.equals(typeCompte, "Professeur")) {
+            this.apogee.addUser(new Professeur(user_name));
+        } else if (Objects.equals(typeCompte, "Administration")) {
+            this.apogee.addUser(new Administration(user_name, this.apogee));
+        } else {
+            //retourner une erreur, type compte inexistant
         }
     }
 
