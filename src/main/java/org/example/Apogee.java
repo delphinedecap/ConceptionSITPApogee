@@ -67,7 +67,7 @@ public class Apogee {
         if (m==null){
             //retourne erreur, matiere inexistante
         }
-        this.m.professeur = p;
+        m.prof = p;
     }
 
     //iscription eleves notes negatives
