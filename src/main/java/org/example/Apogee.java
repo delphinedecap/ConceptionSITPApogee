@@ -62,4 +62,8 @@ public class Apogee {
         }
         return null;
     }
+
+    public User getUserCourant(){
+        return this.utilisateurCourant;
+    }
 }
