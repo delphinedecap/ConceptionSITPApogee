@@ -11,6 +11,7 @@ public class Apogee {
     public Apogee(){
         this.users = new ArrayList<>();
         this.matieres = new ArrayList<>();
+        this.users.add(new Administration("Admin", this));
     }
 
     public void addUser(User u){
@@ -60,24 +61,5 @@ public class Apogee {
             }
         }
         return null;
-    }
-
-    public void changerProfMatiere(int idMat, Professeur p){
-        Matiere m = getMatiere(idMat);
-        if (m==null){
-            //retourne erreur, matiere inexistante
-        }
-        m.prof = p;
-    }
-
-    //iscription eleves notes negatives
-    public void inscriptionElevesMatiere(int idMat, ArrayList<Etudiant> etudiants){
-        Matiere m = getMatiere(idMat);
-        if (m==null){
-            //retourne erreur, matiere inexistante
-        }
-        for (Etudiant e : etudiants){
-            m.notes.put(e, -1);
-        }
     }
 }

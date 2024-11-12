@@ -27,4 +27,22 @@ public class Administration extends User{
         }
     }
 
+    public void changerProfMatiere(int idMat, Professeur p){
+        Matiere m = this.apogee.getMatiere(idMat);
+        if (m==null){
+            //retourne erreur, matiere inexistante
+        }
+        m.prof = p;
+    }
+
+    //iscription eleves notes negatives
+    public void inscriptionElevesMatiere(int idMat, ArrayList<Etudiant> etudiants){
+        Matiere m = this.apogee.getMatiere(idMat);
+        if (m==null){
+            //retourne erreur, matiere inexistante
+        }
+        for (Etudiant e : etudiants){
+            m.notes.put(e, -1);
+        }
+    }
 }
