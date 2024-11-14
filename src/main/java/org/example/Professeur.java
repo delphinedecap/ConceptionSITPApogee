@@ -21,7 +21,7 @@ public class Professeur extends User{
 
     public void consulterEtu(Matiere mat){
         if (this.mat.contains(mat)) {
-            this.mat.consulterEtu();
+            mat.consulterEtu();
         }
         else{
             System.out.println("Vous ne donnez pas ce cours.");

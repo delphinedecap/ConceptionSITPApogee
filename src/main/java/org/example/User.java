@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Scanner;
+
 public abstract class User {
     String user_name;
     Boolean connected = false;
@@ -15,4 +17,9 @@ public abstract class User {
     public String getUserName(){
         return this.user_name;
     }
+
+    public void afficherMenu() {
+        System.out.println("1- Se Déconnecter");
+    }
+
 }
