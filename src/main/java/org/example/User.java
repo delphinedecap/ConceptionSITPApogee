@@ -15,4 +15,8 @@ public abstract class User {
     public String getUserName(){
         return this.user_name;
     }
+
+    public void afficherMenu(){
+        System.out.println("1 - Se déconnecter");
+    }
 }
