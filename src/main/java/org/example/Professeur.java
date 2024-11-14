@@ -9,7 +9,7 @@ public class Professeur extends User{
     }
     // on suppose qu'on a matière composé d'un dico EtudiantNote
     public void noter(Etudiant etu, Matiere matiere, int note){
-        matiere.noter(etu, note);
+        matiere.notes.replace(etu,note);
     }
 
     public void consulterMat(){
@@ -21,7 +21,7 @@ public class Professeur extends User{
 
     public void consulterEtu(Matiere mat){
         if (this.mat.contains(mat)) {
-            this.mat.stream();
+            this.mat.consulterEtu();
         }
         else{
             System.out.println("Vous ne donnez pas ce cours.");

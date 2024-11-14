@@ -2,11 +2,13 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Apogee {
     private ArrayList<User> users;
     private User utilisateurCourant;
     private ArrayList<Matiere> matieres;
+    private Scanner scanner = new Scanner(System.in);
 
     public Apogee(){
         this.users = new ArrayList<>();
@@ -30,7 +32,7 @@ public class Apogee {
     public void connexionUtilisateur(String user_name){
         User u = this.getUser(user_name);
         if (u == null){
-            //retourne erreur utilisateur inconnu
+            System.out.println("Utilisateur inconnu ...");
         } else {
             u.seConnecter();
             utilisateurCourant = u;
@@ -46,7 +48,7 @@ public class Apogee {
         if (getMatiere(idMat)==null){
             this.matieres.add(new Matiere(idMat, p));
         } else {
-            //retourne erreur matièere deja existante
+            System.out.println("Une matière existe déjà avec cet ID");
         }
     }
 
@@ -66,4 +68,44 @@ public class Apogee {
     public User getUserCourant(){
         return this.utilisateurCourant;
     }
+
+    public void afficherMenu(){
+        if (this.utilisateurCourant == null) {
+            System.out.println("1- Se connecter");
+        } else {
+            if (utilisateurCourant instanceof Etudiant) {
+                ((Etudiant)utilisateurCourant).afficherMenu();
+            } else if (utilisateurCourant instanceof Professeur) {
+                ((Professeur)utilisateurCourant).afficherMenu();
+            } else {
+                ((Administration)utilisateurCourant).afficherMenu();
+            }
+        }
+    }
+
+    public void getResponse(){
+        if (this.utilisateurCourant == null ){
+            Integer reponse = scanner.nextInt();
+            if (reponse == 1){
+                System.out.println("Veuillez entrer l'username : ");
+                String username = scanner.nextLine();
+                connexionUtilisateur(username);
+            } else {
+                System.out.println("Choix invalide ...");
+            }
+        } else {
+            Integer reponse;
+            if (utilisateurCourant instanceof Etudiant) {
+                 reponse = ((Etudiant)utilisateurCourant).getResponse(this.scanner);
+            } else if (utilisateurCourant instanceof Professeur) {
+                reponse = ((Professeur)utilisateurCourant).getResponse(this.scanner);
+            } else {
+                reponse = ((Administration)utilisateurCourant).getResponse(this.scanner);
+            }
+            if (reponse == -1) {
+                this.deconnexionUtilisateur();;
+            }
+        }
+    }
+
 }
