@@ -13,6 +13,7 @@ public class Matiere {
         this.idMat = id;
         this.nomMat = nomMat;
         this.prof = prof;
+        prof.mat.add(this);
     }
 
     public void consulterEtu(){

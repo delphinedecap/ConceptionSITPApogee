@@ -1,6 +1,7 @@
 package org.example;
 import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Professeur extends User{
@@ -9,15 +10,14 @@ public class Professeur extends User{
     public Professeur(String user_name){
         this.user_name = user_name;
     }
-    // on suppose qu'on a matière composé d'un dico EtudiantNote
     public void noter(Etudiant etu, Matiere matiere, int note){
-        matiere.notes.replace(etu,note);
+        matiere.noter(etu, note);
     }
 
     public void consulterMat(){
         System.out.println("Vos matières sont : ");
         for(Matiere matiere : mat){
-            System.out.println(matiere+" ");
+            System.out.println(matiere.nomMat+" ");
         }
     }
 
@@ -78,13 +78,13 @@ public class Professeur extends User{
 
 
     }
-        public Matiere getMAt(String nom){
-            for (Matiere matL : mat){
-                if (matL.nomMat == nom){
-                    return matL;
-                }
+    public Matiere getMAt(String nom){
+        for (Matiere matL : mat){
+            if (Objects.equals(matL.nomMat, nom)){
+                return matL;
             }
-            return null;
         }
+        return null;
+    }
 
 }
