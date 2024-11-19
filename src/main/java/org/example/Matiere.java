@@ -4,11 +4,11 @@ import java.util.HashMap;
 
 public class Matiere {
     public int idMat;
-    public char nomMat;
+    public String nomMat;
     public HashMap<Etudiant, Integer> notes = new HashMap();
     public Professeur prof;
 
-    public Matiere(int id, char nomMat, Professeur prof){
+    public Matiere(int id, String nomMat, Professeur prof){
         this.idMat = id;
         this.nomMat = nomMat;
         this.prof = prof;
