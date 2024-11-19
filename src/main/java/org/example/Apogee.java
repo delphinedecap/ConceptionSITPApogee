@@ -115,7 +115,7 @@ public class Apogee {
         } else {
             Integer reponse;
             if (utilisateurCourant instanceof Etudiant) {
-                 reponse = ((Etudiant)utilisateurCourant).getResponse(this.scanner);
+                reponse = ((Etudiant)utilisateurCourant).getResponse(this.scanner);
             } else if (utilisateurCourant instanceof Professeur) {
                 reponse = ((Professeur)utilisateurCourant).getResponse(this.scanner);
             } else {

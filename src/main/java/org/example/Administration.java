@@ -94,14 +94,16 @@ public class Administration extends User{
                 scan.nextLine();
                 System.out.println("Entrez le nom d'utilisateur : ");
                 String username = scan.nextLine();
-                String type_reel = "";
-                switch(type) {
-                    case 1 :
-                        type_reel = "Etudiant";
-                    case 2 :
-                        type_reel = "Professeur";
-                    case 3 :
-                        type_reel = "Administration";
+                String type_reel;
+                if (type==1){
+                    type_reel = "Etudiant";
+                } else if (type == 2) {
+                    type_reel = "Professeur";
+                } else if (type ==3){
+                    type_reel = "Administration";
+                } else {
+                    System.out.println("Type de compte inconnu");
+                    return 0;
                 }
                 this.créerCompte(username, type_reel);
                 return 0;
