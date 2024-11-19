@@ -77,6 +77,7 @@ public class Apogee {
 
     public void afficherMenu(){
         if (this.utilisateurCourant == null) {
+            System.out.println("Que souhaitez vous faire ?");
             System.out.println("1- Se connecter");
         } else {
             if (utilisateurCourant instanceof Etudiant) {
@@ -92,6 +93,7 @@ public class Apogee {
     public void getResponse(){
         if (this.utilisateurCourant == null ){
             Integer reponse = scanner.nextInt();
+            scanner.nextLine();
             if (reponse == 1){
                 System.out.println("Veuillez entrer l'username : ");
                 String username = scanner.nextLine();

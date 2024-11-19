@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Matiere {
     public int idMat;
@@ -15,7 +16,10 @@ public class Matiere {
     }
 
     public void consulterEtu(){
-        System.out.println(notes);
+        System.out.println("Les étudiants de la matière sont : ");
+        for (Etudiant e : this.notes.keySet()){
+            System.out.println(e.getUserName());
+        }
     }
 
     public void noter(Etudiant etu, int note){
@@ -30,7 +34,7 @@ public class Matiere {
 
     public Etudiant getEtu(String Nom){
         for (Etudiant etu : notes.keySet()){
-            if (etu.user_name == Nom) {
+            if (Objects.equals(etu.user_name, Nom)) {
                 return etu;
             }
         }

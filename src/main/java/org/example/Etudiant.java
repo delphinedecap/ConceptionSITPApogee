@@ -21,7 +21,7 @@ public class Etudiant extends User{
         System.out.println("Vos notes sont : ");
         for (Matiere matiere : this.mat){
             System.out.print(matiere.nomMat+" : ");
-            System.out.print(matiere.notes.get(this) + "\n");
+            System.out.println(matiere.notes.get(this));
         }
     }
 

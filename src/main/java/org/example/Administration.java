@@ -13,7 +13,7 @@ public class Administration extends User{
     }
 
     public void créerCompte(String user_name, String typeCompte){
-        if (this.apogee.getUser(user_name)==null){
+        if (this.apogee.getUser(user_name)!=null){
             System.out.println("Cet username est déjà pris ...");
         }
         if (Objects.equals(typeCompte, "Etudiant")){
