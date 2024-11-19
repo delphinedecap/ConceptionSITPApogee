@@ -46,30 +46,45 @@ public class Professeur extends User{
             case 2 :
                 System.out.println("La matière où est inscrit l'étudiant : ");
                 String matiereName = scan.nextLine();
-                System.out.println("Le nom de l'étudiant :");
-                String userName = scan.nextLine();
-                for
-                // int type = scan.nextInt();
-                String type_reel;
-                switch(type) {
-                    case 1 :
-                        type_reel = "Etudiant";
-                    case 2 :
-                        type_reel = "Professeur";
-                    case 3 :
-                        type_reel = "Administration";
-                    default:
-                        return 0;
+                Matiere matNote = getMAt(matiereName);
+                if (matNote != null){
+                    System.out.println("Le nom de l'étudiant :");
+                    String userName = scan.nextLine();
+                    System.out.println("La note que vous voulez lui donner :");
+                    int userNote = scan.nextInt();
+                    Etudiant etu = matNote.getEtu(userName);
+                    if (etu != null) {
+                        matNote.noter(etu, userNote);
+                        System.out.println("Note changé");
+                    }
+                    else {
+                        System.out.println("Etudiant inexistant");
+                    }
                 }
-
-                this.noter(etu, note);
+                else {
+                    System.out.println("Matière inexistante");
+                }
             case 3 :
+                System.out.println("La matière des étudiants à afficher : ");
+                String matiereA = scan.nextLine();
+                Matiere matiere2 = getMAt(matiereA);
+                matiere2.consulterEtu();
             case 4 :
-            case 5 :
-            case 6 :
+                this.consulterMat();
             default:
                 System.out.println("Choix invalide ...");
                 return 0;
         }
+
+
     }
+        public Matiere getMAt(String nom){
+            for (Matiere matL : mat){
+                if (matL.nomMat == nom){
+                    return matL;
+                }
+            }
+            return null;
+        }
+
 }

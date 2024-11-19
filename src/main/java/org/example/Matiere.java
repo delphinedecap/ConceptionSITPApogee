@@ -27,4 +27,13 @@ public class Matiere {
             System.out.println("Etudiant pas dans ce cours");
         }
     }
+
+    public Etudiant getEtu(String Nom){
+        for (Etudiant etu : notes.keySet()){
+            if (etu.user_name == Nom) {
+                return etu;
+            }
+        }
+        return null;
+    }
 }
