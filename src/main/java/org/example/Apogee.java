@@ -44,12 +44,18 @@ public class Apogee {
         this.utilisateurCourant = null;
     }
 
-    public void addMatiere(int idMat, String nomMatiere, Professeur p){
-        if (getMatiere(idMat)==null){
-            this.matieres.add(new Matiere(idMat,nomMatiere, p));
+    public void addMatiere(int idMat, String nomMatiere, String username){
+        User p = getUser(username);
+        if (p instanceof Professeur){
+            if (getMatiere(idMat)==null){
+                this.matieres.add(new Matiere(idMat,nomMatiere, (Professeur)p));
+            } else {
+                System.out.println("Une matière existe déjà avec cet ID");
+            }
         } else {
-            System.out.println("Une matière existe déjà avec cet ID");
+            System.out.println("Ce nom d'utilisateur ne correspond pas à un professeur");
         }
+
     }
 
     public ArrayList<Matiere> getMatieres(){

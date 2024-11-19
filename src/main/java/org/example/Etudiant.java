@@ -13,13 +13,22 @@ public class Etudiant extends User{
     public void consulterMatiere(){
         System.out.println("Vos matières sont :");
         for(Matiere matiere: mat){
-            System.out.println(matiere+" ");
+            System.out.println(matiere.nomMat+" ");
+        }
+    }
+
+    public void consulterNotes(){
+        System.out.println("Vos notes sont : ");
+        for (Matiere matiere : this.mat){
+            System.out.print(matiere.nomMat+" : ");
+            System.out.print(matiere.notes.get(this) + "\n");
         }
     }
 
     public void afficherMenu(){
         super.afficherMenu();
-        System.out.println("2 - Consulter matière");
+        System.out.println("2 - Consulter matières ");
+        System.out.println("3 - Consulter ses notes ");
     }
 
     public int getResponse(Scanner scan){
@@ -30,6 +39,10 @@ public class Etudiant extends User{
                 return -1;
             case 2 :
                 this.consulterMatiere();
+                return 0;
+            case 3 :
+                this.consulterNotes();
+                return 0;
          default:
                 System.out.println("Choix invalide ...");
                 return 0;
