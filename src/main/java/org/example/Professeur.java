@@ -57,7 +57,6 @@ public class Professeur extends User{
                     Etudiant etu = matNote.getEtu(userName);
                     if (etu != null) {
                         matNote.noter(etu, userNote);
-                        System.out.println("Note changé");
                     }
                     else {
                         System.out.println("Etudiant inexistant");
@@ -66,13 +65,16 @@ public class Professeur extends User{
                 else {
                     System.out.println("Matière inexistante");
                 }
+                return 0;
             case 3 :
-                System.out.println("La matière des étudiants à afficher : ");
+                System.out.println("Entrez la matière des étudiants à afficher ");
                 String matiereA = scan.nextLine();
                 Matiere matiere2 = getMAt(matiereA);
-                matiere2.consulterEtu();
+                if (matiere2 != null) {matiere2.consulterEtu();}
+                return 0;
             case 4 :
                 this.consulterMat();
+                return 0;
             default:
                 System.out.println("Choix invalide ...");
                 return 0;

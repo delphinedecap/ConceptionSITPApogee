@@ -76,7 +76,7 @@ public class Administration extends User{
         System.out.println("2- Créer compte");
         System.out.println("3- Inscrire un élève à une matière");
         System.out.println("4- Supprimer un élève d'une matière");
-        System.out.println("5- Inscrire un professeur à une marière");
+        System.out.println("5- Inscrire un professeur à une matière");
         System.out.println("6- Enlever un professeur d'une matière");
         System.out.println("7- Créer une nouvelle matière");
     }
@@ -92,8 +92,6 @@ public class Administration extends User{
                 System.out.println("Quel type de compte voulez vous créer ? 1- Etudiant, 2- Professeur, 3- Administrateur");
                 int type = scan.nextInt();
                 scan.nextLine();
-                System.out.println("Entrez le nom d'utilisateur : ");
-                String username = scan.nextLine();
                 String type_reel;
                 if (type==1){
                     type_reel = "Etudiant";
@@ -105,9 +103,12 @@ public class Administration extends User{
                     System.out.println("Type de compte inconnu");
                     return 0;
                 }
+                System.out.println("Entrez le nom d'utilisateur : ");
+                String username = scan.nextLine();
                 this.créerCompte(username, type_reel);
                 return 0;
             case 3 :
+                scan.nextLine();
                 System.out.println("Entrez l'username de l'étudiant : ");
                 String usernameEtu = scan.nextLine();
                 User e = apogee.getUser(usernameEtu);
@@ -121,6 +122,7 @@ public class Administration extends User{
                 }
                 return 0;
             case 4 :
+                scan.nextLine();
                 System.out.println("Entrez l'username de l'étudiant : ");
                 String usernameEtu2 = scan.nextLine();
                 User e2 = apogee.getUser(usernameEtu2);
@@ -134,6 +136,7 @@ public class Administration extends User{
                 }
                 return 0;
             case 5 :
+                scan.nextLine();
                 System.out.println("Entrez l'username du professeur : ");
                 String profUsername = scan.nextLine();
                 User p = apogee.getUser(profUsername);
@@ -147,6 +150,7 @@ public class Administration extends User{
                 }
                 return 0;
             case 6 :
+                scan.nextLine();
                 System.out.println("Entrez l'username du professeur : ");
                 String profUsername2 = scan.nextLine();
                 User p2 = apogee.getUser(profUsername2);

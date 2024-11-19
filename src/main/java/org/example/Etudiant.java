@@ -21,7 +21,11 @@ public class Etudiant extends User{
         System.out.println("Vos notes sont : ");
         for (Matiere matiere : this.mat){
             System.out.print(matiere.nomMat+" : ");
-            System.out.println(matiere.notes.get(this));
+            if (matiere.notes.get(this)==-1){
+                System.out.println("non noté");
+            } else {
+                System.out.println(matiere.notes.get(this));
+            }
         }
     }
 
