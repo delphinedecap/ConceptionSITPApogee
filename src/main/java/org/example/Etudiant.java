@@ -27,12 +27,13 @@ public class Etudiant extends User{
 
     public void afficherMenu(){
         super.afficherMenu();
-        System.out.println("2 - Consulter matières ");
-        System.out.println("3 - Consulter ses notes ");
+        System.out.println("2- Consulter matières ");
+        System.out.println("3- Consulter ses notes ");
     }
 
     public int getResponse(Scanner scan){
         int response = scan.nextInt();
+        scan.nextLine();
         switch (response) {
             case 1 :
                 this.seDeconnecter();

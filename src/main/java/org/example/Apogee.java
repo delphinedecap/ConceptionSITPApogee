@@ -13,7 +13,6 @@ public class Apogee {
     public Apogee(){
         this.users = new ArrayList<>();
         this.matieres = new ArrayList<>();
-        this.users.add(new Administration("Admin", this));
     }
 
     public void addUser(User u){
@@ -36,10 +35,12 @@ public class Apogee {
         } else {
             u.seConnecter();
             utilisateurCourant = u;
+            System.out.println("Bienvenue " + user_name);
         }
     }
 
     public void deconnexionUtilisateur(){
+        System.out.println("Aurevoir " + this.utilisateurCourant.getUserName() + " ... ");
         this.utilisateurCourant.seDeconnecter();
         this.utilisateurCourant = null;
     }
@@ -76,16 +77,26 @@ public class Apogee {
     }
 
     public void afficherMenu(){
-        if (this.utilisateurCourant == null) {
-            System.out.println("Que souhaitez vous faire ?");
-            System.out.println("1- Se connecter");
+        if (this.users.isEmpty()){
+            System.out.println("Veuillez créer un nom administrateur pour commencer à utiliser Apogee");
+            System.out.println("-------------");
+            System.out.println("Veuillez entrer le nouveau nom d'utilisateur du compte administrateur");
+            String username = scanner.nextLine();
+            Administration admin = new Administration(username, this);
+            this.users.add(admin);
+            connexionUtilisateur(username);
         } else {
-            if (utilisateurCourant instanceof Etudiant) {
-                ((Etudiant)utilisateurCourant).afficherMenu();
-            } else if (utilisateurCourant instanceof Professeur) {
-                ((Professeur)utilisateurCourant).afficherMenu();
+            if (this.utilisateurCourant == null) {
+                System.out.println("Que souhaitez vous faire ?");
+                System.out.println("1- Se connecter");
             } else {
-                ((Administration)utilisateurCourant).afficherMenu();
+                if (utilisateurCourant instanceof Etudiant) {
+                    ((Etudiant) utilisateurCourant).afficherMenu();
+                } else if (utilisateurCourant instanceof Professeur) {
+                    ((Professeur) utilisateurCourant).afficherMenu();
+                } else {
+                    ((Administration) utilisateurCourant).afficherMenu();
+                }
             }
         }
     }

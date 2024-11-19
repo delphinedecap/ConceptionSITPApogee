@@ -89,10 +89,11 @@ public class Administration extends User{
                 this.seDeconnecter();
                 return -1;
             case 2 :
-                System.out.println("Entrez le nom d'utilisateur : ");
-                String username = scan.nextLine();
                 System.out.println("Quel type de compte voulez vous créer ? 1- Etudiant, 2- Professeur, 3- Administrateur");
                 int type = scan.nextInt();
+                scan.nextLine();
+                System.out.println("Entrez le nom d'utilisateur : ");
+                String username = scan.nextLine();
                 String type_reel = "";
                 switch(type) {
                     case 1 :
@@ -102,7 +103,8 @@ public class Administration extends User{
                     case 3 :
                         type_reel = "Administration";
                 }
-                this.créerCompte(user_name, type_reel);
+                this.créerCompte(username, type_reel);
+                return 0;
             case 3 :
                 System.out.println("Entrez l'username de l'étudiant : ");
                 String usernameEtu = scan.nextLine();
@@ -110,6 +112,7 @@ public class Administration extends User{
                 if (e != null && e instanceof Etudiant) {
                     System.out.println("Entree l'identifiant de la matière : ");
                     int idMat = scan.nextInt();
+                    scan.nextLine();
                     inscriptionEleveMatiere(idMat, (Etudiant)e);
                 } else {
                     System.out.println("L'identifiant ne correspond pas à un étudiant existant");
@@ -122,6 +125,7 @@ public class Administration extends User{
                 if (e2 != null && e2 instanceof Etudiant) {
                     System.out.println("Entree l'identifiant de la matière : ");
                     int idMat2 = scan.nextInt();
+                    scan.nextLine();
                     suppressionEleveMatiere((Etudiant)e2, idMat2);
                 } else {
                     System.out.println("L'identifiant ne correspond pas à un étudiant existant");
@@ -134,6 +138,7 @@ public class Administration extends User{
                 if (p != null && p instanceof Professeur) {
                     System.out.println("Entree l'identifiant de la matière : ");
                     int idMat3 = scan.nextInt();
+                    scan.nextLine();
                     inscriptionProfMatiere(idMat3, (Professeur)p);
                 } else {
                     System.out.println("L'identifiant ne correspond pas à un professeur existant");
@@ -146,6 +151,7 @@ public class Administration extends User{
                 if (p2 != null && p2 instanceof Professeur) {
                     System.out.println("Entree l'identifiant de la matière : ");
                     int idMat4 = scan.nextInt();
+                    scan.nextLine();
                     suppressionProfMatiere(idMat4, (Professeur)p2);
                 } else {
                     System.out.println("L'identifiant ne correspond pas à un professeur existant");
@@ -153,7 +159,8 @@ public class Administration extends User{
                 return 0;
             case 7 :
                 System.out.println("Veuillez saisir un identifiant pour la matiere : ");
-                int idMatiere = scan.nextInt();;
+                int idMatiere = scan.nextInt();
+                scan.nextLine();
                 System.out.println("Veuillez saisir un nom pour la matière : ");
                 String nomMat = scan.nextLine();
                 System.out.println("Veuillez saisir l'username du professeur en charge de la matière : ");

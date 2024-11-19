@@ -32,13 +32,14 @@ public class Professeur extends User{
 
     public void afficherMenu(){
         super.afficherMenu();
-        System.out.println("2 - Noter");
-        System.out.println("3 - Consulter ses étudiants");
-        System.out.println("4 - Consulter ses matières");
+        System.out.println("2- Noter");
+        System.out.println("3- Consulter ses étudiants");
+        System.out.println("4- Consulter ses matières");
     }
 
     public int getResponse(Scanner scan){
         int response = scan.nextInt();
+        scan.nextLine();
         switch (response) {
             case 1 :
                 this.seDeconnecter();
@@ -52,6 +53,7 @@ public class Professeur extends User{
                     String userName = scan.nextLine();
                     System.out.println("La note que vous voulez lui donner :");
                     int userNote = scan.nextInt();
+                    scan.nextLine();
                     Etudiant etu = matNote.getEtu(userName);
                     if (etu != null) {
                         matNote.noter(etu, userNote);
