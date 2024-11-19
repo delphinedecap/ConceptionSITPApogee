@@ -13,7 +13,7 @@ public class Apogee {
     public Apogee(){
         this.users = new ArrayList<>();
         this.matieres = new ArrayList<>();
-        this.users.add(new Administration("Admin", this));
+        this.users.add(new Administration("Administration", this));
     }
 
     public void addUser(User u){

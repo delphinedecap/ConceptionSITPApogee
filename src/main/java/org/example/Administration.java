@@ -12,9 +12,10 @@ public class Administration extends User{
         this.apogee = a;
     }
 
-    public void créerCompte(String user_name, String typeCompte){
-        if (this.apogee.getUser(user_name)==null){
+    public boolean créerCompte(String user_name, String typeCompte){
+        if (this.apogee.getUser(user_name) !=null){
             System.out.println("Cet username est déjà pris ...");
+            return false;
         }
         if (Objects.equals(typeCompte, "Etudiant")){
             this.apogee.addUser(new Etudiant(user_name));
@@ -24,7 +25,10 @@ public class Administration extends User{
             this.apogee.addUser(new Administration(user_name, this.apogee));
         } else {
             System.out.println("Type de compte inconnu ...");
+            return false;
         }
+        System.out.println("Compte créé avec succès.");
+        return true;
     }
 
     public void inscriptionProfMatiere(int idMat, Professeur p){
