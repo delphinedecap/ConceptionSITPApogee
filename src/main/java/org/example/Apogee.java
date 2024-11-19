@@ -44,9 +44,9 @@ public class Apogee {
         this.utilisateurCourant = null;
     }
 
-    public void addMatiere(int idMat, Professeur p){
+    public void addMatiere(int idMat, String nomMatiere, Professeur p){
         if (getMatiere(idMat)==null){
-            this.matieres.add(new Matiere(idMat, p));
+            this.matieres.add(new Matiere(idMat,nomMatiere, p));
         } else {
             System.out.println("Une matière existe déjà avec cet ID");
         }

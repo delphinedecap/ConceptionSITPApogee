@@ -23,26 +23,55 @@ public class Administration extends User{
             this.apogee.addUser(new Professeur(user_name));
         } else if (Objects.equals(typeCompte, "Administration")) {
             this.apogee.addUser(new Administration(user_name, this.apogee));
+        } else {
+            System.out.println("Type de compte inconnu ...");
         }
     }
 
     public void inscriptionProfMatiere(int idMat, Professeur p){
         Matiere m = this.apogee.getMatiere(idMat);
         if (m==null){
-            //retourne erreur, matiere inexistante
+            System.out.println("Cet identifiant ne correspond pas à une matière existante...");
+        } else {
+            m.prof = p;
+            p.mat.add(m);
         }
-        m.prof = p;
     }
 
-    //iscription eleves notes negatives
-    public void inscriptionElevesMatiere(int idMat, ArrayList<Etudiant> etudiants){
+    public void suppressionProfMAtiere(int idMat, Professeur p){
         Matiere m = this.apogee.getMatiere(idMat);
         if (m==null){
-            //retourne erreur, matiere inexistante
+            System.out.println("Cet identifiant ne correspond pas à une matière existante...");
+        } else {
+            m.prof = null;
+            p.mat.remove(m);
         }
-        for (Etudiant e : etudiants){
-            m.notes.put(e, -1);
+    }
+
+    public void inscriptionEleveMatiere(int idMat, Etudiant etudiant){
+        Matiere m = this.apogee.getMatiere(idMat);
+        if (m==null){
+            System.out.println("La matière n'existe pas...");
         }
+        else {
+            m.notes.put(etudiant, -1);
+            etudiant.mat.add(apogee.getMatiere(idMat));
+        }
+    }
+
+    public void suppressionEleveMatiere(Etudiant etu, int idMat){
+        Matiere m = this.apogee.getMatiere(idMat);
+        if (m==null){
+            System.out.println("La matière n'existe pas...");
+        }
+        else {
+            m.notes.remove(etu);
+            etu.mat.remove(apogee.getMatiere(idMat));
+        }
+    }
+
+    public void creerMatiere(int idMat, String nomMat, Professeur p){
+        apogee.addMatiere(idMat,nomMat,p);
     }
 
     public void afficherMenu(){
@@ -52,6 +81,7 @@ public class Administration extends User{
         System.out.println("4- Supprimer un élève d'une matière");
         System.out.println("5- Inscrire un professeur à une marière");
         System.out.println("6- Enlever un professeur d'une matière");
+        System.out.println("7- Créer une nouvelle matière");
     }
 
 
@@ -66,7 +96,7 @@ public class Administration extends User{
                 String username = scan.nextLine();
                 System.out.println("Quel type de compte voulez vous créer ? 1- Etudiant, 2- Professeur, 3- Administrateur");
                 int type = scan.nextInt();
-                String type_reel;
+                String type_reel = "";
                 switch(type) {
                     case 1 :
                         type_reel = "Etudiant";
@@ -74,15 +104,69 @@ public class Administration extends User{
                         type_reel = "Professeur";
                     case 3 :
                         type_reel = "Administration";
-                    default:
-                        return 0;
                 }
-
                 this.créerCompte(user_name, type_reel);
             case 3 :
+                System.out.println("Entrez l'username de l'étudiant : ");
+                String usernameEtu = scan.nextLine();
+                User e = apogee.getUser(usernameEtu);
+                if (e != null && e instanceof Etudiant) {
+                    System.out.println("Entree l'identifiant de la matière : ");
+                    int idMat = scan.nextInt();
+                    inscriptionEleveMatiere(idMat, (Etudiant)e);
+                } else {
+                    System.out.println("L'identifiant ne correspond pas à un étudiant existant");
+                }
+                return 0;
             case 4 :
+                System.out.println("Entrez l'username de l'étudiant : ");
+                String usernameEtu2 = scan.nextLine();
+                User e2 = apogee.getUser(usernameEtu2);
+                if (e2 != null && e2 instanceof Etudiant) {
+                    System.out.println("Entree l'identifiant de la matière : ");
+                    int idMat2 = scan.nextInt();
+                    suppressionEleveMatiere((Etudiant)e2, idMat2);
+                } else {
+                    System.out.println("L'identifiant ne correspond pas à un étudiant existant");
+                }
+                return 0;
             case 5 :
+                System.out.println("Entrez l'username du professeur : ");
+                String profUsername = scan.nextLine();
+                User p = apogee.getUser(profUsername);
+                if (p != null && p instanceof Professeur) {
+                    System.out.println("Entree l'identifiant de la matière : ");
+                    int idMat3 = scan.nextInt();
+                    inscriptionProfMatiere(idMat3, (Professeur)p);
+                } else {
+                    System.out.println("L'identifiant ne correspond pas à un professeur existant");
+                }
+                return 0;
             case 6 :
+                System.out.println("Entrez l'username du professeur : ");
+                String profUsername2 = scan.nextLine();
+                User p2 = apogee.getUser(profUsername2);
+                if (p2 != null && p2 instanceof Professeur) {
+                    System.out.println("Entree l'identifiant de la matière : ");
+                    int idMat4 = scan.nextInt();
+                    suppressionProfMAtiere(idMat4, (Professeur)p2);
+                } else {
+                    System.out.println("L'identifiant ne correspond pas à un professeur existant");
+                }
+                return 0;
+            case 7 :
+                System.out.println("Veuillez saisir un identifiant pour la matiere : ");
+                int idMatiere = scan.nextInt();;
+                System.out.println("Veuillez saisir un nom pour la matière : ");
+                String nomMat = scan.nextLine();
+                System.out.println("Veuillez saisir l'username du professeur en charge de la matière : ");
+                String idProf = scan.nextLine();
+                User prof = apogee.getUser(idProf);
+                if (prof != null && prof instanceof Professeur) {
+                    creerMatiere(idMatiere, nomMat, (Professeur)prof);
+                } else {
+                    System.out.println("L'identifiant ne correspond pas à un professeur existant");
+                }
             default:
                 System.out.println("Choix invalide ...");
                 return 0;
