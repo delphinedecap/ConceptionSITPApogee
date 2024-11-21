@@ -6,6 +6,7 @@ public class Main {
     public static void main(String[] args) {
         syso
         Apogee apogee = new Apogee();
+        apogee.afficherMenu();
         while (true) {
             apogee.afficherMenu();
             apogee.getResponse();

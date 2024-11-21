@@ -21,18 +21,23 @@ public class Etudiant extends User{
         System.out.println("Vos notes sont : ");
         for (Matiere matiere : this.mat){
             System.out.print(matiere.nomMat+" : ");
-            System.out.print(matiere.notes.get(this) + "\n");
+            if (matiere.notes.get(this)==-1){
+                System.out.println("non noté");
+            } else {
+                System.out.println(matiere.notes.get(this));
+            }
         }
     }
 
     public void afficherMenu(){
         super.afficherMenu();
-        System.out.println("2 - Consulter matières ");
-        System.out.println("3 - Consulter ses notes ");
+        System.out.println("2- Consulter matières ");
+        System.out.println("3- Consulter ses notes ");
     }
 
     public int getResponse(Scanner scan){
         int response = scan.nextInt();
+        scan.nextLine();
         switch (response) {
             case 1 :
                 this.seDeconnecter();

@@ -17,6 +17,6 @@ public abstract class User {
     }
 
     public void afficherMenu(){
-        System.out.println("1 - Se déconnecter ");
+        System.out.println("1- Se déconnecter ");
     }
 }

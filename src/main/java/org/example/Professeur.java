@@ -1,6 +1,7 @@
 package org.example;
 import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Professeur extends User{
@@ -9,15 +10,14 @@ public class Professeur extends User{
     public Professeur(String user_name){
         this.user_name = user_name;
     }
-    // on suppose qu'on a matière composé d'un dico EtudiantNote
     public void noter(Etudiant etu, Matiere matiere, int note){
-        matiere.notes.replace(etu,note);
+        matiere.noter(etu, note);
     }
 
     public void consulterMat(){
         System.out.println("Vos matières sont : ");
         for(Matiere matiere : mat){
-            System.out.println(matiere+" ");
+            System.out.println(matiere.nomMat+" ");
         }
     }
 
@@ -32,13 +32,14 @@ public class Professeur extends User{
 
     public void afficherMenu(){
         super.afficherMenu();
-        System.out.println("2 - Noter");
-        System.out.println("3 - Consulter ses étudiants");
-        System.out.println("4 - Consulter ses matières");
+        System.out.println("2- Noter");
+        System.out.println("3- Consulter ses étudiants");
+        System.out.println("4- Consulter ses matières");
     }
 
     public int getResponse(Scanner scan){
         int response = scan.nextInt();
+        scan.nextLine();
         switch (response) {
             case 1 :
                 this.seDeconnecter();
@@ -52,10 +53,10 @@ public class Professeur extends User{
                     String userName = scan.nextLine();
                     System.out.println("La note que vous voulez lui donner :");
                     int userNote = scan.nextInt();
+                    scan.nextLine();
                     Etudiant etu = matNote.getEtu(userName);
                     if (etu != null) {
                         matNote.noter(etu, userNote);
-                        System.out.println("Note changé");
                     }
                     else {
                         System.out.println("Etudiant inexistant");
@@ -64,13 +65,16 @@ public class Professeur extends User{
                 else {
                     System.out.println("Matière inexistante");
                 }
+                return 0;
             case 3 :
-                System.out.println("La matière des étudiants à afficher : ");
+                System.out.println("Entrez la matière des étudiants à afficher ");
                 String matiereA = scan.nextLine();
                 Matiere matiere2 = getMAt(matiereA);
-                matiere2.consulterEtu();
+                if (matiere2 != null) {matiere2.consulterEtu();}
+                return 0;
             case 4 :
                 this.consulterMat();
+                return 0;
             default:
                 System.out.println("Choix invalide ...");
                 return 0;
@@ -78,13 +82,13 @@ public class Professeur extends User{
 
 
     }
-        public Matiere getMAt(String nom){
-            for (Matiere matL : mat){
-                if (matL.nomMat == nom){
-                    return matL;
-                }
+    public Matiere getMAt(String nom){
+        for (Matiere matL : mat){
+            if (Objects.equals(matL.nomMat, nom)){
+                return matL;
             }
-            return null;
         }
+        return null;
+    }
 
 }
