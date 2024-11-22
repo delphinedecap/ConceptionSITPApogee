@@ -7,6 +7,7 @@ public class Etudiant extends User{
     public ArrayList<Matiere> mat = new ArrayList();
 
     public Etudiant(String user_name){
+        this.connected = false;
         this.user_name = user_name;
     }
 

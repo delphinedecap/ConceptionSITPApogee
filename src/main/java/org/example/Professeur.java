@@ -8,6 +8,7 @@ public class Professeur extends User{
     public ArrayList<Matiere> mat = new ArrayList();
 
     public Professeur(String user_name){
+        this.connected = false;
         this.user_name = user_name;
     }
     public void noter(Etudiant etu, Matiere matiere, int note){
