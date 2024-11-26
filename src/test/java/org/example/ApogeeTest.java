@@ -76,17 +76,22 @@ class ApogeeTest {
 
     @Test
     void getMatiere() {
+        Apogee a = new Apogee();
+        Professeur p = new Professeur("prof");
+        a.users.add(p);
+        Matiere m = new Matiere(1, "mat", p);
+        a.matieres.add(m);
+
+        assertEquals(m, a.getMatiere(1));
     }
 
     @Test
     void getUserCourant() {
-    }
-
-    @Test
-    void afficherMenu() {
-    }
-
-    @Test
-    void getResponse() {
+        Apogee a = new Apogee();
+        assertNull(a.getUserCourant());
+        Administration admin = new Administration("admin", a);
+        a.addUser(admin);
+        a.connexionUtilisateur("admin");
+        assertEquals(admin, a.getUserCourant());
     }
 }
