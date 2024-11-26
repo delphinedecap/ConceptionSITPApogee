@@ -32,13 +32,14 @@ class UserTest {
         Professeur p = new Professeur("Gouteux");
         Etudiant e = new Etudiant("Anaïs");
         String nom = null ;
-        nom = getUserName(p);
+        nom = p.getUserName();
         assertEquals("Gouteux", nom,"Récupération des userNames - déféctueuse");
-        nom = getUserName(e);
+        nom = e.getUserName();
         assertEquals("Anaïs", nom,"Récupération des userNames - déféctueuse");
     }
 
     @Test
     void afficherMenu() {
+
     }
 }
