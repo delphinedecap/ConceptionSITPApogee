@@ -12,5 +12,3 @@ public class Main {
         }
     }
 }
-
-//créer un scanner qui demande un prénom pour créer apogee(nom) et créer admin avec nom
