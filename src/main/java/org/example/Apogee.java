@@ -5,10 +5,10 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Apogee {
-    private ArrayList<User> users;
-    private User utilisateurCourant;
-    private ArrayList<Matiere> matieres;
-    private Scanner scanner = new Scanner(System.in);
+    ArrayList<User> users;
+    User utilisateurCourant;
+    ArrayList<Matiere> matieres;
+    Scanner scanner = new Scanner(System.in);
 
     public Apogee(){
         this.users = new ArrayList<>();
