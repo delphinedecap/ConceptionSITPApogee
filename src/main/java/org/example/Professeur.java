@@ -12,7 +12,12 @@ public class Professeur extends User{
         this.user_name = user_name;
     }
     public void noter(Etudiant etu, Matiere matiere, int note){
-        matiere.noter(etu, note);
+        if (note>20 || note<0){
+            System.out.println("Note invalide");
+        }
+        else {
+            matiere.noter(etu, note);
+        }
     }
 
     public void consulterMat(){

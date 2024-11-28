@@ -54,6 +54,25 @@ class MatiereTest {
     }
 
     @Test
+    void noterInvalide(){
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Etudiant e1 = new Etudiant("Etudiant1");
+
+        Professeur p = new Professeur("Professeur");
+
+        Matiere m = new Matiere(001, "Matiere1", p);
+        m.notes.put(e1, -1);
+
+        m.noter(e1, -2);
+        System.setOut(originalOut);
+        String expectedOutput ="Note invalide" + System.lineSeparator();
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
     public void testNoterErreur(){
         PrintStream originalOut = System.out;
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();

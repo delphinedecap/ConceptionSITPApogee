@@ -68,7 +68,17 @@ public class Administration extends User{
     }
 
     public void creerMatiere(int idMat, String nomMat, String username){
-        apogee.addMatiere(idMat,nomMat,username);
+        boolean identique = false;
+        for (Matiere m : apogee.matieres){
+            if (m.nomMat==nomMat){
+                identique=true;
+            }
+        }
+        if (identique){
+            System.out.println("Nom de la matière déjà utilisé");
+        } else {
+            apogee.addMatiere(idMat, nomMat, username);
+        }
     }
 
     public void afficherMenu(){
@@ -178,5 +188,7 @@ public class Administration extends User{
                 return 0;
         }
     }
+
+
 
 }

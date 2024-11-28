@@ -58,10 +58,6 @@ class ProfesseurTest {
 
     @Test
     void getMAt() {
-        PrintStream originalOut = System.out;
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-
         Professeur p = new Professeur("Professeur1");
 
         Matiere m = new Matiere(001, "Matiere1", p);
@@ -71,4 +67,6 @@ class ProfesseurTest {
 
         assertNull(p.getMAt("Matiere3"));
     }
+
+
 }

@@ -25,8 +25,12 @@ public class Matiere {
 
     public void noter(Etudiant etu, int note){
         if (notes.containsKey(etu)){
-            notes.put(etu, note);
-            System.out.println("Note mise à jour");
+            if (note>20 || note<0){
+                System.out.println("Note invalide");
+            } else {
+                notes.put(etu, note);
+                System.out.println("Note mise à jour");
+            }
         }
         else {
             System.out.println("Etudiant pas dans ce cours");

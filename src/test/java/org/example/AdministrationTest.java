@@ -1,5 +1,8 @@
 package org.example;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class AdministrationTest {
@@ -67,6 +70,24 @@ class AdministrationTest {
     }
 
     @org.junit.jupiter.api.Test
+    void creerMatierNomUnique(){
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Apogee apogee = new Apogee();
+        Administration admin = new Administration("admin", apogee);
+        admin.créerCompte("prof", "Professeur");
+        admin.creerMatiere(1, "Matiere1", "prof");
+        admin.creerMatiere(2, "Matiere1", "prof");
+
+        System.setOut(originalOut);
+        String expectedOutput ="Nom de la matière déjà utilisé" + System.lineSeparator();
+        assertEquals(expectedOutput, outContent.toString());
+
+    }
+
+    @org.junit.jupiter.api.Test
     void inscriptionEleveMatiere(){
         Apogee apogee = new Apogee();
         Administration admin = new Administration("admin", apogee);
@@ -102,5 +123,21 @@ class AdministrationTest {
 
         assertNull(m.notes.get(e));
         assertFalse(e.mat.contains(m));
+    }
+
+    @org.junit.jupiter.api.Test
+    void userWithSameUsername(){
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Apogee apogee = new Apogee();
+        Administration admin = new Administration("admin", apogee);
+        admin.créerCompte("prof", "Professeur");
+        admin.créerCompte("prof", "Etudiant");
+
+        System.setOut(originalOut);
+        String expectedOutput ="Cet username est déjà pris ..." + System.lineSeparator();
+        assertEquals(expectedOutput, outContent.toString());
     }
 }
