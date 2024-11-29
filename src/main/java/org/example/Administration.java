@@ -18,10 +18,13 @@ public class Administration extends User{
         }
         if (Objects.equals(typeCompte, "Etudiant")){
             this.apogee.addUser(new Etudiant(user_name));
+            System.out.println("Compte créé");
         } else if (Objects.equals(typeCompte, "Professeur")) {
             this.apogee.addUser(new Professeur(user_name));
+            System.out.println("Compte créé");
         } else if (Objects.equals(typeCompte, "Administration")) {
             this.apogee.addUser(new Administration(user_name, this.apogee));
+            System.out.println("Compte créé");
         } else {
             System.out.println("Type de compte inconnu ...");
         }
@@ -34,6 +37,7 @@ public class Administration extends User{
         } else {
             m.prof = p;
             p.mat.add(m);
+            System.out.println("Cours créé");
         }
     }
 
@@ -44,6 +48,7 @@ public class Administration extends User{
         } else {
             m.prof = null;
             p.mat.remove(m);
+            System.out.println("Matière supprimé");
         }
     }
 
@@ -54,6 +59,7 @@ public class Administration extends User{
         } else {
             m.notes.put(etu, -1);
             etu.mat.add(apogee.getMatiere(idMat));
+            System.out.println("Eleve inscrit");
         }
     }
 
@@ -64,6 +70,7 @@ public class Administration extends User{
             } else {
                 m.notes.remove(etu);
                 etu.mat.remove(apogee.getMatiere(idMat));
+                System.out.println("Etudiant supprimé");
             }
     }
 
@@ -78,6 +85,7 @@ public class Administration extends User{
             System.out.println("Nom de la matière déjà utilisé");
         } else {
             apogee.addMatiere(idMat, nomMat, username);
+            System.out.println("Matière crée");
         }
     }
 

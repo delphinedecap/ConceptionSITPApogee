@@ -14,6 +14,7 @@ class AdministrationTest {
         admin.créerCompte("Guillaume", "Professeur");
         admin.créerCompte("Tom", "Etudiant");
         admin.créerCompte("Julie", "Administration");
+        admin.créerCompte("Severine", "PProfesseur");
         assertNotNull(apogee.getUser("Guillaume"));
         assertTrue(apogee.getUser("Guillaume") instanceof Professeur);
 
@@ -22,6 +23,8 @@ class AdministrationTest {
 
         assertNotNull(apogee.getUser("Julie"));
         assertTrue(apogee.getUser("Julie") instanceof Administration);
+
+        assertNull(apogee.getUser("Severine"));
     }
 
     @org.junit.jupiter.api.Test

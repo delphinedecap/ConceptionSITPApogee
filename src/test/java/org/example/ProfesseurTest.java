@@ -33,7 +33,9 @@ class ProfesseurTest {
 
         p.consulterMat();
         System.setOut(originalOut);
-        String expectedOutput ="Vos matières sont : " + System.lineSeparator() + "Matiere1 " + System.lineSeparator() + "Matiere2 " + System.lineSeparator();
+        String expectedOutput ="Vos matières sont : " + System.lineSeparator() +
+                               "Matiere1 " + System.lineSeparator() +
+                               "Matiere2 " + System.lineSeparator();
         assertEquals(expectedOutput, outContent.toString());
     }
 
